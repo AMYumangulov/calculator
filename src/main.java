@@ -4,7 +4,8 @@ import java.util.Arrays;
 public class main {
     public static char[] rimNmbArr = {'I', 'V', 'X'};
     public static int[] arabNmbArr = {1, 5, 10};
-//    public static String[] rimStrArr = {"I", "II", "e", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XII"};
+
+    //    public static String[] rimStrArr = {"I", "II", "e", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XII"};
 
     public static String arab2Roman(int arab) {
         String[] ones = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
@@ -113,6 +114,10 @@ public class main {
             }
         }
 
+        if ((firstInt < 1 | secondInt < 1) | (firstInt > 10 | secondInt > 10)) {
+            throw new UnsupportedOperationException("числа не должны быть менее 1 и не более 10!");
+        }
+
         try {
             if (exprStr.charAt(0) == '+') {
                 if (romanNumb[0] == 1) {
@@ -127,10 +132,14 @@ public class main {
         }
 
         if (exprStr.charAt(0) == '-') {
-            if (firstInt - secondInt < 0) {
-                throw new UnsupportedOperationException("в римской системе нет отрицательных чисел");
-            }
+
             if (romanNumb[0] == 1) {
+                if (firstInt - secondInt < 0 ) {
+                    throw new UnsupportedOperationException("в римской системе нет отрицательных чисел");
+                }
+                if (firstInt - secondInt == 0 ) {
+                    throw new UnsupportedOperationException("результат выражения равен 0, но в римской системе нет числа 0");
+                }
                 System.out.println(arab2Roman(firstInt - secondInt));
             } else {
                 System.out.println(firstInt - secondInt);
@@ -150,6 +159,10 @@ public class main {
                 System.out.println(firstInt / secondInt);
             }
         }
+
+       /* if (romanNumb[0] == 1 & ) {
+
+        }*/
 
         in.close();
     }
